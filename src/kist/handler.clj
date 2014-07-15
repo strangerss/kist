@@ -40,6 +40,11 @@
 
   (timbre/info "guestbook started successfully"))
 
+(defn destroy
+  "destroy will be called when your application
+   shuts down, put any clean up code here"
+  []
+  (timbre/info "sring is shutting down..."))
 
 (def app (app-handler
            ;; add your application routes here

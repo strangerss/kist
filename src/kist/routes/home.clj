@@ -4,23 +4,43 @@
 						[kist.util :as util]
 						[kist.db.core :as db]))
 
-(defn paging? []
+;;
+;; util的な関数
+;;
+(defn elucidate-msg? []
 	(> (first (db/get-cnt-messages)) 10))
 
-(defn paging-list []
-	(range (quot (first (db/get-cnt-messages)) 10)))
-
-
+;;
+;; ページ レイアウトバインディング 関数群
+;;
 (defn home-page [& [name message error]]
 	(layout/render "home.html"
 								 {:error    error
 									:name     name
 									:message  message
-									:messages (db/get-messages)
-									:paging-list (paging-list)
-									:paging (paging?)
+									:messages (db/get-messages-10)
+									:elucidate-msg (elucidate-msg?)
 									}))
 
+(defn manage [& [id]]
+	(layout/render "manage.html"
+								 {:id id
+									:messages (db/get-messages)
+									}))
+
+(defn manage [& [id error]]
+	(layout/render "manage.html"
+								 {:id id
+									:error error
+									:messages (db/get-messages)
+									}))
+
+(defn about-page []
+	(layout/render "about.html"))
+
+;;
+;; ページ データバインディング 関数群
+;;
 (defn save-message [name message]
 	(cond
 
@@ -35,19 +55,25 @@
 		 (db/save-message name message)
 		 (home-page))))
 
+(defn delete-message [id]
+	;; selectして存在チェック
+	;; なかったらidとerror_message返して自画面遷移
+	;; あったら該当idのguestbook削除して自画面遷移
+	(cond
+	 (empty? id)
+	 (manage id "id error")
 
-(defn about-page []
-	(layout/render "about.html"))
+	 :else
+	 (do
+		 (db/delete-message  id)
+		 (manage))))
 
+;;
+;; ルート定義関数
+;;
 (defroutes home-routes
 	(GET "/" [] (home-page))
 	(POST "/" [name message] (save-message name message))
-	(GET "/about" [] (about-page)))
-
-
-
-
-
-
-
-
+	(GET "/about" [] (about-page))
+	(GET "/manage" [] (manage))
+	(POST "/manage" [id] (delete-message id)))

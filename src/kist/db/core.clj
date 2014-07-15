@@ -8,16 +8,16 @@
 (defentity users)
 (defentity guestbook)
 
+;;
+;; クエリ定義
+;;
+
+;;
+;; userテーブル
+;;
 (defn create-user [user]
   (insert users
           (values user)))
-
-(defn save-message
-  [name message]
-  (insert guestbook
-          (values {:name name
-                   :message message
-                   :timestamp (new java.util.Date)})))
 
 (defn update-user [id first-name last-name email]
   (update users
@@ -31,14 +31,27 @@
                  (where {:id id})
                  (limit 1))))
 
+;;
+;; guestbookテーブル
+;;
+(defn save-message
+  [name message]
+  (insert guestbook
+          (values {:name name
+                   :message message
+                   :timestamp (new java.util.Date)})))
+
 (defn get-messages []
   (select guestbook))
 
 (defn get-cnt-messages []
 	(map :cnt (select guestbook	(aggregate (count :*) :cnt))))
 
+(defn get-messages-10 []
+	(select guestbook (order :id :desc) (limit 10)))
 
+(defn delete-message [id]
+	(delete guestbook (where (= :id id))))
 
-
-
-
+(defn get-messages-by-id [id]
+	(:id (first (select guestbook (where (= :id id))))))

@@ -4,6 +4,9 @@
 
 (def db-store "site.db")
 
+;;
+;; db情報
+;;
 (def db-spec {:classname "org.h2.Driver"
 							:subprotocol "h2"
 							:subname (str (io/resource-path) db-store)
@@ -18,7 +21,9 @@
 	[]
 	(.exists (new java.io.File (str (io/resource-path) db-store ".mv.db"))))
 
-
+;;
+;; スキーマ情報
+;;
 (defn create-guestbook-table []
 	(sql/db-do-commands
 	 db-spec
@@ -30,7 +35,6 @@
 		[:message "varchar(200)"]))
 	(sql/db-do-prepared db-spec
 											"CREATE INDEX timestamp_index ON guestbook (timestamp)"))
-
 
 (defn create-users-table
 	[]
@@ -47,6 +51,9 @@
 		[:is_active :boolean]
 		[:pass "varchar(100)"])))
 
+;;
+;; テーブル作成
+;;
 (defn create-tables
 	"creates the database tables used by the application"
 	[]
