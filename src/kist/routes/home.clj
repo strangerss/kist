@@ -19,21 +19,18 @@
 									:name     name
 									:message  message
 									:messages (db/get-messages-10)
-									:elucidate-msg (elucidate-msg?)
-									}))
+									:elucidate-msg (elucidate-msg?)}))
 
 (defn manage [& [id]]
 	(layout/render "manage.html"
 								 {:id id
-									:messages (db/get-messages)
-									}))
+									:messages (db/get-messages)}))
 
 (defn manage [& [id error]]
 	(layout/render "manage.html"
 								 {:id id
 									:error error
-									:messages (db/get-messages)
-									}))
+									:messages (db/get-messages)}))
 
 (defn about-page []
 	(layout/render "about.html"))

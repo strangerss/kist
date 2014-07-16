@@ -1,0 +1,8 @@
+07-15 11:16:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: SQLステートメントに文法エラーがあります "SELECT ""GUESTBOOK"".* FROM ""GUESTBOOK"" ORDER BY ""GUESTBOOK"".""TIMESTAMP"" CREATED[*] LIMIT 10"
+Syntax error in SQL statement "SELECT ""GUESTBOOK"".* FROM ""GUESTBOOK"" ORDER BY ""GUESTBOOK"".""TIMESTAMP"" CREATED[*] LIMIT 10"; SQL statement:
+SELECT "GUESTBOOK".* FROM "GUESTBOOK" ORDER BY "GUESTBOOK"."TIMESTAMP" CREATED LIMIT 10 [42000-178]
+07-15 13:35:35 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: データ変換中にエラーが発生しました 
+Data conversion error converting ; SQL statement:
+SELECT "GUESTBOOK".* FROM "GUESTBOOK" WHERE "GUESTBOOK"."ID" = ? [22018-178]

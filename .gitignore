@@ -8,5 +8,4 @@ pom.xml
 /.lein-*
 /.env
 *.log
-/src/kist/repl.clj
 /help.txt
