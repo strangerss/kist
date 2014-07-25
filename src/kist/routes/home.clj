@@ -65,12 +65,26 @@
 		 (db/delete-message  id)
 		 (manage))))
 
+(defn manage-edit	[id message]
+	;; message編集処理
+	(cond
+	 (empty? id)
+	 (manage id "id error")
+
+	 :else
+	 (do
+		 (db/update-message! id message)
+		 (manage))))
+
 ;;
 ;; ルート定義関数
 ;;
 (defroutes home-routes
-	(GET "/" [] (home-page))
+	(GET  "/" [] (home-page))
 	(POST "/" [name message] (save-message name message))
-	(GET "/about" [] (about-page))
-	(GET "/manage" [] (manage))
-	(POST "/manage" [id] (delete-message id)))
+	(GET  "/about" [] (about-page))
+	(POST  "/about" [] (about-page))
+	(GET  "/manage" [] (manage))
+	(POST  "/manage" [] (manage))
+	(POST  "/manageedit" [id message] (manage-edit id message))
+	(POST "/managedel" [id] (delete-message id))) ;ここをmanage_delにしてmanage_editを追加する

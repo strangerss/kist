@@ -14,6 +14,16 @@ To start a web server for the application, run:
 
     lein ring server
 
+以下cljsについて
+
+compile
+
+		lein cljsbuild once release
+
+build (dev mode)
+
+		lein cljsbuild auto dev
+
 ## License
 
 Copyright © 2014 FIXME

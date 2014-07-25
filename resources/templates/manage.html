@@ -8,13 +8,19 @@
     <div>
         削除
         編集しときたい
+        <form method="POST" name="managefrom" id="managefrom" action="">
+
+            <button class="btn btn-default navbar-btn" type="submit" id="delete" onclick="kist.manage.del()">削除</button>
+            <button class="btn btn-default navbar-btn" type="submit" id="edit" onclick="kist.manage.edit()">編集</button>
+            <br/>
+            message
+            <br/>
+            <input type="text" name="message" id="message" value=""></input><br/>
+
+            {% if error %}
+            <h3><span class="label label-danger">{{error}}</span></h3>
+            {% endif %}
     </div>
-
-    {% if error %}
-    <h3><span class="label label-danger">{{error}}</span></h3>
-    {% endif %}
-
-
 
     <div class="panel panel-default">
         <!-- Default panel contents -->
@@ -24,34 +30,28 @@
 
         <!-- Table -->
         <table class="table">
-
-            <form method="POST" name="managefrom">
-
-                <button class="btn btn-default navbar-btn" type="submit" id="delete">削除</button>
-                <button class="btn btn-default navbar-btn" type="submit" id="edit">編集</button>
-
-                <thead>
-                    <tr>
-                        <th>check</th>
-                        <th>id</th>
-                        <th>name</th>
-                        <th>message</th>
-                        <th>timestamp</th>
-                    </tr>
-                </thead>
-                {% for item in messages %}
+            <thead>
                 <tr>
-                    <td><input type="radio" name="id" value="{{item.id}}"></input></td>
-                    <td>{{item.id}}</td>
-                    <td>{{item.name}}</td>
-                    <td>{{item.message}}</td>
-                    <td>{{item.timestamp|date:"yyyy-MM-dd HH:mm"}}</td>
+                    <th>check</th>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>message</th>
+                    <th>timestamp</th>
                 </tr>
-                {% endfor %}
-            </from>
+            </thead>
+            {% for item in messages %}
+            <tr>
+                <td><input type="radio" name="id" value="{{item.id}}"></input></td>
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.message}}</td>
+                <td>{{item.timestamp|date:"yyyy-MM-dd HH:mm"}}</td>
+            </tr>
+            {% endfor %}
         </table>
-    </div>
-</div>
 
+    </div>
+        </from>
+</div>
 <script src="js/manage.js"></script>
 {% endblock %}
