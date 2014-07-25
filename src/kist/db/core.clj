@@ -7,6 +7,7 @@
 
 (defentity users)
 (defentity guestbook)
+(defentity charactor)
 
 ;;
 ;; クエリ定義
@@ -55,8 +56,13 @@
 					(set-fields {:message message})
 					(where {:id id})))
 
-(defn delete-message [id]
+(defn delete-message! [id]
 	(delete guestbook (where (= :id id))))
 
 (defn get-messages-by-id [id]
 	(:id (first (select guestbook (where (= :id id))))))
+
+;;
+;; charactor
+;;
+

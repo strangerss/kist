@@ -6,20 +6,17 @@
     </div>
 
     <div>
-        削除
-        編集しときたい
         <form method="POST" name="managefrom" id="managefrom" action="">
 
             <button class="btn btn-default navbar-btn" type="submit" id="delete" onclick="kist.manage.del()">削除</button>
             <button class="btn btn-default navbar-btn" type="submit" id="edit" onclick="kist.manage.edit()">編集</button>
+            {% if error %}
+            <h3><span class="label label-danger">{{error}}</span></h3>
+            {% endif %}
             <br/>
             message
             <br/>
             <input type="text" name="message" id="message" value=""></input><br/>
-
-            {% if error %}
-            <h3><span class="label label-danger">{{error}}</span></h3>
-            {% endif %}
     </div>
 
     <div class="panel panel-default">

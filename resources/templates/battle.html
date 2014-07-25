@@ -1,0 +1,33 @@
+{% extends "templates/base.html" %}
+{% block content %}
+<p>this is the story of kist... work in progress</p>
+
+<table>
+    <tr>
+        <td>
+            <div style="width:200px;height:200px; border:#000000 solid 1px;border-radius:5px;">
+                <p style="margin-bottom: 0px;">name : test君</p>
+                <p style="margin-bottom: 0px;">hp : 100</p>
+                <p style="margin-bottom: 0px;">tp : 100</p>
+            </div>
+        </td>
+        <td>
+            <div style="width:200px;"></div>
+        </td>
+        <td>
+            <div style="width:200px;height:200px; border:#000000 solid 1px;border-radius:5px;">
+                <p style="margin-bottom: 0px;">name : 敵さん</p>
+                <p style="margin-bottom: 0px;">hp : 100</p>
+                <p style="margin-bottom: 0px;">tp : 100</p>
+            </div>
+        </td>
+    </tr>
+<table>
+
+<br/>
+<br/>
+
+<div class="alert alert-info" role="alert" style="margin-bottom: 0px;">こっちのターン</div>
+<div class="alert alert-danger" role="alert" style="margin-bottom: 0px;">敵のターン</div>
+
+{% endblock %}

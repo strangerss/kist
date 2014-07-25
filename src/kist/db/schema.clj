@@ -51,6 +51,34 @@
 		[:is_active :boolean]
 		[:pass "varchar(100)"])))
 
+(defn create-charactor_info-table
+	[]
+	(sql/db-do-commands
+	 db-spec
+	 (sql/create-table-ddl
+		:users
+		[:id "INTEGER PRIMARY KEY AUTO_INCREMENT"]
+		[:name "varchar(30)"]
+		[:job "INTEGER"]
+		[:exp "INTEGER"])))
+
+(defn create-charactor_status-table
+	[]
+	(sql/db-do-commands
+	 db-spec
+	 (sql/create-table-ddl
+		:users
+		[:id "INTEGER PRIMARY KEY AUTO_INCREMENT"]
+		[:lv "INTEGER"]
+		[:hp "INTEGER"]
+		[:tp "INTEGER"]
+		[:atk "INTEGER"]
+		[:def "INTEGER"]
+		[:int "INTEGER"]
+		[:res "INTEGER"]
+		[:dex "INTEGER"]
+		[:agi "INTEGER"])))
+
 ;;
 ;; テーブル作成
 ;;

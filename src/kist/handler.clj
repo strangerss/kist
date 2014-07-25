@@ -1,6 +1,8 @@
 (ns kist.handler
   (:require [compojure.core :refer [defroutes]]
             [kist.routes.home :refer [home-routes]]
+						[kist.routes.manage :refer [manage-routes]]
+						[kist.routes.battle :refer [battle-routes]]
             [kist.middleware :refer [load-middleware]]
             [noir.response :refer [redirect]]
             [noir.util.middleware :refer [app-handler]]
@@ -48,7 +50,7 @@
 
 (def app (app-handler
            ;; add your application routes here
-           [home-routes app-routes]
+           [battle-routes manage-routes home-routes app-routes]
            ;; add custom middleware here
            :middleware (load-middleware)
            ;; timeout sessions after 30 minutes
