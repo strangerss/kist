@@ -4,7 +4,7 @@
             [environ.core :refer [env]]
             [selmer.middleware :refer [wrap-error-page]]
             [noir-exception.core
-              :refer [wrap-internal-error wrap-exceptions]]))
+             :refer [wrap-internal-error wrap-exceptions]]))
 
 (defn log-request [handler]
   (fn [req]

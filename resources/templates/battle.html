@@ -1,14 +1,13 @@
 {% extends "templates/base.html" %}
 {% block content %}
-<p>this is the story of kist... work in progress</p>
 
 <table>
     <tr>
         <td>
             <div style="width:200px;height:200px; border:#000000 solid 1px;border-radius:5px;">
-                <p style="margin-bottom: 0px;">name : test君</p>
-                <p style="margin-bottom: 0px;">hp : 100</p>
-                <p style="margin-bottom: 0px;">tp : 100</p>
+                <p style="margin-bottom: 0px;">name : {{charactor_info_1.name}}</p>
+                <p style="margin-bottom: 0px;">hp : {{charactor_status_1.hp}}</p>
+                <p style="margin-bottom: 0px;">tp : {{charactor_status_1.tp}}</p>
             </div>
         </td>
         <td>
@@ -16,9 +15,9 @@
         </td>
         <td>
             <div style="width:200px;height:200px; border:#000000 solid 1px;border-radius:5px;">
-                <p style="margin-bottom: 0px;">name : 敵さん</p>
-                <p style="margin-bottom: 0px;">hp : 100</p>
-                <p style="margin-bottom: 0px;">tp : 100</p>
+                <p style="margin-bottom: 0px;">name : {{charactor_info_2.name}}</p>
+                <p style="margin-bottom: 0px;">hp : {{charactor_status_2.hp}}</p>
+                <p style="margin-bottom: 0px;">tp : {{charactor_status_2.tp}}</p>
             </div>
         </td>
     </tr>

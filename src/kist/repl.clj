@@ -24,7 +24,7 @@
             (serve (get-handler)
                    {:port port
                     :init init
-										:destroy destroy
+                    :destroy destroy
                     :auto-reload? true
                     :join? false}))
     (println (str "You can view the site at http://localhost:" port))))
