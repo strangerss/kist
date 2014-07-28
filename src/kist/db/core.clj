@@ -96,11 +96,18 @@
 
 
 
-(defn get-charactor_status-by-id [id]
+(defn get-charactor_status [id]
   (first (select charactor_status (where (= :id id)))))
 
-;;(get-charactor_status-by-id 2)
+(defn update-hp! [id hp]
+  (update  charactor_status
+           (set-fields {:hp hp})
+           (where {:id id})))
 
+;;(get-charactor_status 2)
+
+(get-charactor_status 2)
+(update-hp! 2 195)
 
 ;; (select charactor_status)
 ;; (insert-charactor_status! 200 100 10 10 10 10 10 10)
@@ -118,9 +125,9 @@
                      :job job
                      :exp exp})))
 
-(defn get-charactor_info-by-id [id]
+(defn get-charactor_info [id]
   (first (select charactor_info (where (= :id id)))))
 
 ;;(select charactor_info)
-;;(get-charactor_info-by-id 1)
+;;(get-charactor_info 1)
 ;;(insert-charactor_info! 2 "敵的な" 2 10)

@@ -1,6 +1,10 @@
 {% extends "templates/base.html" %}
 {% block content %}
 
+{% if error %}
+    <p class="error">{{error}}</p>
+{% endif %}
+
 <table>
     <tr>
         <td>
@@ -8,6 +12,8 @@
                 <p style="margin-bottom: 0px;">name : {{charactor_info_1.name}}</p>
                 <p style="margin-bottom: 0px;">hp : {{charactor_status_1.hp}}</p>
                 <p style="margin-bottom: 0px;">tp : {{charactor_status_1.tp}}</p>
+                <p style="margin-bottom: 0px;">atk : {{charactor_status_1.atk}}</p>
+                <p style="margin-bottom: 0px;">def : {{charactor_status_1.def}}</p>
             </div>
         </td>
         <td>
@@ -18,15 +24,30 @@
                 <p style="margin-bottom: 0px;">name : {{charactor_info_2.name}}</p>
                 <p style="margin-bottom: 0px;">hp : {{charactor_status_2.hp}}</p>
                 <p style="margin-bottom: 0px;">tp : {{charactor_status_2.tp}}</p>
+                <p style="margin-bottom: 0px;">atk : {{charactor_status_2.atk}}</p>
+                <p style="margin-bottom: 0px;">def : {{charactor_status_2.def}}</p>
             </div>
         </td>
     </tr>
-<table>
+</table>
+
+<br/>
+<br/>
+
+<form method="POST" name="battlefrom" id="battlefrom" action="">
+
+    <div class="btn-group-vertical">
+        <button type="submit" class="btn btn-default" style="width:100px"; id="natk" onclick="kist.battle.natk()">攻撃</button>
+    </div>
+
+    <input type="hidden" name="mid" id="mid" value="{{charactor_info_1.id}}"/>
+    <input type="hidden" name="eid" id="eid" value="{{charactor_info_2.id}}"/>
+</form>
 
 <br/>
 <br/>
 
 <div class="alert alert-info" role="alert" style="margin-bottom: 0px;">こっちのターン</div>
 <div class="alert alert-danger" role="alert" style="margin-bottom: 0px;">敵のターン</div>
-
+<script src="js/main.js"></script>
 {% endblock %}
