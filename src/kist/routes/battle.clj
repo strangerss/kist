@@ -39,15 +39,11 @@
      (empty? mid) (battle-page-error "mid error")
      (empty? eid) (battle-page-error "eid error"))
 
-
-
     ;; ダメージからHP更新
     (let [me    (db/get-charactor_status mid)
           enemy (db/get-charactor_status eid)
           damege (calc-natack (:atk me) (:def enemy))]
-      (db/update-hp! eid  (- (:hp enemy) damege)) ; dbにデータ有
-      (battle-page-error "どちらかのidが存在しません")) ; dbにデータ無
-
+      (db/update-hp! eid  (- (:hp enemy) damege)))
 
     ;; システムログ的なあれは一旦は保存なしで
     ;; レイアウト関数への受け渡し
