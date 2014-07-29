@@ -23,31 +23,58 @@
 ;;
 ;; util的な関数
 ;;
+(defn rest-hp [hp damege]
+  ;; 残りhpの計算
+  (- hp damege))
+
 (defn calc-natack [atk defence]
+  ;; 通常攻撃の計算
   (cond
    (< 0 (- atk defence))
    (- atk defence)
    :else 0))
 
+(defn get-charactor_status-data-check [id error-msg]
+  ;; charactor_status-dataに存在したらレコード返却､なかったらエラー文言を返却
+  (if-let [row (db/get-charactor_status id)]
+    row
+    error-msg))
 ;;
 ;; ページ データバインディング 関数群
 ;;
-(defn battle-natack [mid eid]
+(defn battle-natack-db [mid eid]
+  ;; 通常攻撃時の処理
   (do
-    ;; 引数チェック
-    (cond
-     (empty? mid) (battle-page-error "mid error")
-     (empty? eid) (battle-page-error "eid error"))
-
     ;; ダメージからHP更新
-    (let [me    (db/get-charactor_status mid)
-          enemy (db/get-charactor_status eid)
-          damege (calc-natack (:atk me) (:def enemy))]
-      (db/update-hp! eid  (- (:hp enemy) damege)))
+    (let [me (get-charactor_status-data-check mid "mid dbに存在しない")
+          enemy (get-charactor_status-data-check eid "eid dbに存在しない")]
+      (cond
 
-    ;; システムログ的なあれは一旦は保存なしで
-    ;; レイアウト関数への受け渡し
-    (battle-page)))
+       (string? me)
+       (battle-page-error me)
+
+       (string? enemy)
+       (battle-page-error enemy)
+
+       :else ;ダメージ計算とdb更新
+       (do
+         (db/update-hp! eid  (rest-hp (:hp enemy) (calc-natack (:atk me) (:def enemy))))
+         ;; システムログ的なあれは一旦は保存なしで
+         ;; レイアウト関数への受け渡し
+         (battle-page))))))
+
+(defn battle-natack [mid eid]
+  ;; リクエストパラメータチェック､問題なければ通常処理へ
+  (cond
+
+   (empty? mid)
+   (battle-page-error "mid error")
+
+   (empty? eid)
+   (battle-page-error "eid error")
+
+   :else
+   (battle-natack-db mid eid)))
 
 ;;
 ;; ルート定義関数
