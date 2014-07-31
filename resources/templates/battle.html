@@ -7,13 +7,36 @@
 
 <table>
     <tr>
+      {% for user2 in party_2 %}
+      <td>
+        <div style="width:200px;height:200px; border:#000000 solid 1px;border-radius:5px;">
+            <p style="margin-bottom: 0px;">name : {{charactor_info_1.name}}</p>
+            <p style="margin-bottom: 0px;">hp   : {{charactor_status_1.hp}}</p>
+            <p style="margin-bottom: 0px;">tp   : {{charactor_status_1.tp}}</p>
+            <p style="margin-bottom: 0px;">atk  : {{charactor_status_1.atk}}</p>
+            <p style="margin-bottom: 0px;">def  : {{charactor_status_1.def}}</p>
+        </div>
+      </td>
+      {% endfor %}
+    </tr>
+</table>
+
+<br/>
+
+{% for user1 in party_1 %}
+<p>{{user1.charactor_id}}</p>
+{% endfor %}
+
+
+<table>
+    <tr>
         <td>
             <div style="width:200px;height:200px; border:#000000 solid 1px;border-radius:5px;">
                 <p style="margin-bottom: 0px;">name : {{charactor_info_1.name}}</p>
-                <p style="margin-bottom: 0px;">hp : {{charactor_status_1.hp}}</p>
-                <p style="margin-bottom: 0px;">tp : {{charactor_status_1.tp}}</p>
-                <p style="margin-bottom: 0px;">atk : {{charactor_status_1.atk}}</p>
-                <p style="margin-bottom: 0px;">def : {{charactor_status_1.def}}</p>
+                <p style="margin-bottom: 0px;">hp   : {{charactor_status_1.hp}}</p>
+                <p style="margin-bottom: 0px;">tp   : {{charactor_status_1.tp}}</p>
+                <p style="margin-bottom: 0px;">atk  : {{charactor_status_1.atk}}</p>
+                <p style="margin-bottom: 0px;">def  : {{charactor_status_1.def}}</p>
             </div>
         </td>
         <td>
@@ -22,10 +45,10 @@
         <td>
             <div style="width:200px;height:200px; border:#000000 solid 1px;border-radius:5px;">
                 <p style="margin-bottom: 0px;">name : {{charactor_info_2.name}}</p>
-                <p style="margin-bottom: 0px;">hp : {{charactor_status_2.hp}}</p>
-                <p style="margin-bottom: 0px;">tp : {{charactor_status_2.tp}}</p>
-                <p style="margin-bottom: 0px;">atk : {{charactor_status_2.atk}}</p>
-                <p style="margin-bottom: 0px;">def : {{charactor_status_2.def}}</p>
+                <p style="margin-bottom: 0px;">hp   : {{charactor_status_2.hp}}</p>
+                <p style="margin-bottom: 0px;">tp   : {{charactor_status_2.tp}}</p>
+                <p style="margin-bottom: 0px;">atk  : {{charactor_status_2.atk}}</p>
+                <p style="margin-bottom: 0px;">def  : {{charactor_status_2.def}}</p>
             </div>
         </td>
     </tr>

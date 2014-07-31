@@ -1,5 +1,7 @@
 (ns kist.db.schema
+  (:use korma.core [korma.db :only (defdb)])
   (:require [clojure.java.jdbc :as sql]
+            [korma.sql.utils :as utils]
             [noir.io :as io]))
 
 (def db-store "site.db")
@@ -57,7 +59,7 @@
    db-spec
    (sql/create-table-ddl
     :charactor_status
-    [:id "INTEGER PRIMARY KEY AUTO_INCREMENT"]
+    [:id "INTEGER PRIMARY KEY"]
     [:lv "INTEGER"]
     [:hp "INTEGER"]
     [:tp "INTEGER"]
@@ -79,6 +81,23 @@
     [:job "INTEGER"]
     [:exp "INTEGER"])))
 
+(defn create-party-table
+  []
+  (sql/db-do-commands
+   db-spec
+   (sql/create-table-ddl
+    :party
+    [:id "INTEGER"]
+    [:charactor_id "INTEGER"]
+    [:position "INTEGER"]
+    [:order_num "INTEGER"])))
+
+(defn drop-party-table
+  []
+  (sql/db-do-commands
+   db-spec
+   (sql/drop-table-ddl :party)))
+
 ;;
 ;; テーブル作成
 ;;
@@ -86,4 +105,7 @@
   "creates the database tables used by the application"
   []
   (create-guestbook-table)
+  (create-charactor_status-table)
+  (create-charactor_info-table)
+  (create-party-table)
   (create-users-table))
