@@ -5,68 +5,65 @@
     <p class="error">{{error}}</p>
 {% endif %}
 
-<table>
-    <tr>
-      {% for user2 in party_2 %}
-      <td>
-        <div style="width:200px;height:200px; border:#000000 solid 1px;border-radius:5px;">
-            <p style="margin-bottom: 0px;">name : {{charactor_info_1.name}}</p>
-            <p style="margin-bottom: 0px;">hp   : {{charactor_status_1.hp}}</p>
-            <p style="margin-bottom: 0px;">tp   : {{charactor_status_1.tp}}</p>
-            <p style="margin-bottom: 0px;">atk  : {{charactor_status_1.atk}}</p>
-            <p style="margin-bottom: 0px;">def  : {{charactor_status_1.def}}</p>
-        </div>
-      </td>
-      {% endfor %}
-    </tr>
-</table>
-
-<br/>
-
-{% for user1 in party_1 %}
-<p>{{user1.charactor_id}}</p>
-{% endfor %}
-
-
-<table>
-    <tr>
-        <td>
-            <div style="width:200px;height:200px; border:#000000 solid 1px;border-radius:5px;">
-                <p style="margin-bottom: 0px;">name : {{charactor_info_1.name}}</p>
-                <p style="margin-bottom: 0px;">hp   : {{charactor_status_1.hp}}</p>
-                <p style="margin-bottom: 0px;">tp   : {{charactor_status_1.tp}}</p>
-                <p style="margin-bottom: 0px;">atk  : {{charactor_status_1.atk}}</p>
-                <p style="margin-bottom: 0px;">def  : {{charactor_status_1.def}}</p>
-            </div>
-        </td>
-        <td>
-            <div style="width:200px;"></div>
-        </td>
-        <td>
-            <div style="width:200px;height:200px; border:#000000 solid 1px;border-radius:5px;">
-                <p style="margin-bottom: 0px;">name : {{charactor_info_2.name}}</p>
-                <p style="margin-bottom: 0px;">hp   : {{charactor_status_2.hp}}</p>
-                <p style="margin-bottom: 0px;">tp   : {{charactor_status_2.tp}}</p>
-                <p style="margin-bottom: 0px;">atk  : {{charactor_status_2.atk}}</p>
-                <p style="margin-bottom: 0px;">def  : {{charactor_status_2.def}}</p>
-            </div>
-        </td>
-    </tr>
-</table>
-
-<br/>
-<br/>
 
 <form method="POST" name="battlefrom" id="battlefrom" action="">
 
-    <div class="btn-group-vertical">
+<!--<div class="btn-group-vertical">
         <button type="submit" class="btn btn-default" style="width:100px"; id="natk" onclick="kist.battle.natk()">攻撃</button>
     </div>
 
-    <input type="hidden" name="mid" id="mid" value="{{charactor_info_1.id}}"/>
-    <input type="hidden" name="eid" id="eid" value="{{charactor_info_2.id}}"/>
-</form>
+    <input type="hidden" name="mid" id="mid" value="{{charactor_info_1.id}}"/>-->
 
+    <table>
+        <tr>
+            {% for eu in enemy_c_info_1 %}
+
+            <td>
+                <button type="submit" class="btn btn-default" style="width:200px;height:200px;padding-left: 0px;padding-top: 00px;padding-right: 0px;padding-bottom: 0px;" id="natk" onclick="kist.battle.natk({{eu.id}})">
+                    <div style="width:200px;height:200px; border:#000000 solid 1px;border-radius:5px;background-color: #F39191;">
+                        <p style="margin-bottom: 0px;">{{eu.name}}</p>
+                        <p style="margin-bottom: 0px;">hp : {{eu.hp}}</p>
+                        <p style="margin-bottom: 0px;">tp : {{eu.tp}}</p>
+                        <p style="margin-bottom: 0px;">atk : {{eu.atk}}</p>
+                        <p style="margin-bottom: 0px;">def : {{eu.def}}</p>
+                    </div>
+                </button>
+            </td>
+
+            <td>
+                <div style="width:25px;"></div>
+            </td>
+            {% endfor %}
+            <input type="hidden" name="eid" id="eid"/>
+        </tr>
+    </table>
+
+    <br/>
+    <br/>
+
+    <table>
+        <tr>
+            {% for mu in mine_c_info_1 %}
+            <td>
+                <div style="width:200px;height:200px; border:#000000 solid 1px;border-radius:5px;background-color: #42C7FA">
+                    <p style="margin-bottom: 0px;">{{mu.name}}</p>
+                    <p style="margin-bottom: 0px;">hp : {{mu.hp}}</p>
+                    <p style="margin-bottom: 0px;">tp : {{mu.tp}}</p>
+                    <p style="margin-bottom: 0px;">atk : {{mu.atk}}</p>
+                    <p style="margin-bottom: 0px;">def : {{mu.def}}</p>
+                </div>
+            </td>
+
+            <input type="hidden" name="mid" id="mid" value="{{mu.id}}"/>
+
+            <td>
+                <div style="width:25px;"></div>
+            </td>
+            {% endfor %}
+        </tr>
+    </table>
+
+</form>
 <br/>
 <br/>
 

@@ -53,10 +53,10 @@
 
 ;;(get-charactor_status 2)
 
+;; (get-charactor_status 1)
+
 ;;(get-charactor_status 2)
 ;;(update-hp! 2 200)
-
-(select charactor_status)
 
 ;;(insert-charactor_status! 1 200 100 10 30 10 10 10 10)
 ;;(insert-charactor_status! 2 200 100 10 10 10 10 10 10)
@@ -120,14 +120,19 @@
 ;; (first (gp 2))
 ;; (first (rest (gp 2)))
 
-
-(conj [1 2 3] [4 5 6])
-
 (defn get-party-users [party-id]
-   (for [party (get-party party-id)
-         info  (vector (:name (get-charactor_info (:charactor_id party))))
-         status (vector (get-charactor_status (:charactor_id party)))]
-      (vector info status)))
+  (for [party (get-party party-id)
+        info  (vector  (get-charactor_info (:charactor_id party)))
+        status (vector (get-charactor_status (:charactor_id party)))]
+    (conj info status)))
 
-;; (first (get-party-users 2))
+;; (get-party-users 2)
+
+;; (:name (first (get-party-users 2)))
+
+
+;; (second  (get-party-users 2))
+
+;; (last (first (get-party-users 2)))
+
 ;; (rest (get-party-users 2))

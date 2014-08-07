@@ -31,21 +31,13 @@
 ;;
 (defn battle-page []
   (layout/render "battle.html"
-                 {:party_1 (db/get-party 1)
-                  :party_2 (db/get-party 2)
-                  :charactor_info_1 (db/get-charactor_info 1) ;; partyからidのリスト受け取ってここにバインドする系に変更してみる?
-                  :charactor_status_1 (db/get-charactor_status 1)
-                  :charactor_info_2 (db/get-charactor_info 2)
-                  :charactor_status_2 (db/get-charactor_status 2)}))
+                 {:mine_c_info_1 (db/get-party-users 1)
+                  :enemy_c_info_1 (db/get-party-users 2)}))
 
 (defn battle-page-error [error]
   (layout/render "battle.html"
-                 {:party_1 (db/get-party 1)
-                  :party_2 (db/get-party 2)
-                  :charactor_info_1 (db/get-charactor_info 1)
-                  :charactor_status_1 (db/get-charactor_status 1)
-                  :charactor_info_2 (db/get-charactor_info 2)
-                  :charactor_status_2 (db/get-charactor_status 2)
+                 {:mine_c_info_1 (db/get-party-users 1)
+                  :enemy_c_info_1 (db/get-party-users 2)
                   :error error}))
 
 ;;

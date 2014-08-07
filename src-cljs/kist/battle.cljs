@@ -1,6 +1,9 @@
 (ns kist.battle
 	(:use [domina :only [by-id]]))
 
-(defn ^:export natk[]
-	(let [form (by-id "battlefrom")]
-		(set! (.-action form) "/battlenatk")))
+(defn ^:export natk[id]
+  (let [form (by-id "battlefrom")
+        eid (by-id "eid")]
+    (do
+      (set! (.-value eid) id)
+      (set! (.-action form) "/battlenatk"))))
